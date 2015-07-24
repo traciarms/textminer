@@ -1,34 +1,28 @@
 import re
 
-# @xfail
-# @params("input,expected", [
-#     ("hello", ['hello']),
-#     ("hello world", ['hello', 'world']),
-#     ("raggggg hammer dog", ['raggggg', 'hammer', 'dog']),
-#     ("18-wheeler tarbox", ['18-wheeler', 'tarbox']),
-#     ("12", None),
-# ])
 
 def words(input):
-    input_list = input.split(' ')
-    print(input_list)
-    return input_list
+    input_list = re.findall(r'\b[A-z0-9\-]*[A-z]+', input)
+
+    if len(input_list) == 0:
+        return None
+    else:
+        return input_list
 
 
-# @xfail
-# @params("input,expected", [
-#     ("919-555-1212", {"area_code": "919", "number": "555-1212"}),
-#     ("(919) 555-1212", {"area_code": "919", "number": "555-1212"}),
-#     ("9195551212", {"area_code": "919", "number": "555-1212"}),
-#     ("919.555.1212", {"area_code": "919", "number": "555-1212"}),
-#     ("919 555-1212", {"area_code": "919", "number": "555-1212"}),
-#     ("555-121", None)
-# ])
+def phone_number(input):
+    phone = re.search(r"(?:\(?(\d{3})+\)?[\-\.]?\s*)?(\d{3})[\-\.]?(\d{4})",
+                      input)
 
-#def phone_number(input):
+    if phone == None:
+        return None
+    else:
+        r_dict = {}
+        r_dict["area_code"] = phone.group(1)
+        r_dict["number"] = "{}-{}".format(phone.group(2), phone.group(3))
+        return r_dict
 
 
-#
 # @xfail
 # @params("input,expected", [
 #     ("$4", {"currency": "$", "amount": 4.0}),
@@ -52,10 +46,29 @@ def words(input):
 #     ("$$31", None),
 # ])
 
-#def money(input):
-    # """We are just concerned with dollars here for now but might take other
-#    currencies later."""
+def money(input):
+    """We are just concerned with dollars here for now but might take other
+   currencies later."""
+    money = re.match(r'(\${1})((\d{1,3})+,\d{3}?\.\d{2})?', input)
 
+    # print(money.string)
+    # print(money.group())
+    # print(money.groups())
+
+    if money == None:
+        return None
+    else:
+        r_dict = {}
+        r_dict["currency"] = money.group(0)
+
+        print(money.string)
+        print('the group 1 {}'.format(money.groups()))
+        r_dict["amount"] = money.string.replace('$','')
+        mystring = float(r_dict["amount"].replace(',', ''))
+        r_dict["amount"] = mystring
+
+        print(r_dict)
+        return r_dict
 
 # @xfail
 # @params("input,expected", [
@@ -85,3 +98,11 @@ def words(input):
 # ])
 
 #def date(input):
+
+if __name__ == '__main__':
+
+    money("$19")
+    money("$19.00")
+    money("$3.58")
+    money("$5,555,555.55")
+    money("$$31")

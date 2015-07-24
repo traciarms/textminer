@@ -4,16 +4,16 @@ params = pytest.mark.parametrize
 
 import textminer.separator as s
 
-@xfail
-@params("input,expected", [
-    ("hello", ['hello']),
-    ("hello world", ['hello', 'world']),
-    ("raggggg hammer dog", ['raggggg', 'hammer', 'dog']),
-    ("18-wheeler tarbox", ['18-wheeler', 'tarbox']),
-    ("12", None),
-])
-def test_words(input, expected):
-    assert s.words(input) == expected
+# @xfail
+# @params("input,expected", [
+#     ("hello", ['hello']),
+#     ("hello world", ['hello', 'world']),
+#     ("raggggg hammer dog", ['raggggg', 'hammer', 'dog']),
+#     ("18-wheeler tarbox", ['18-wheeler', 'tarbox']),
+#     ("12", None),
+# ])
+# def test_words(input, expected):
+#     assert s.words(input) == expected
 
 
 # @xfail
@@ -27,35 +27,35 @@ def test_words(input, expected):
 # ])
 # def test_phone_numbers(input, expected):
 #     assert s.phone_number(input) == expected
-#
-#
-# @xfail
-# @params("input,expected", [
-#     ("$4", {"currency": "$", "amount": 4.0}),
-#     ("$19", {"currency": "$", "amount": 19.0}),
-#     ("$19.00", {"currency": "$", "amount": 19.0}),
-#     ("$3.58", {"currency": "$", "amount": 3.58}),
-#     ("$1000", {"currency": "$", "amount": 1000.0}),
-#     ("$1000.00", {"currency": "$", "amount": 1000.0}),
-#     ("$1,000", {"currency": "$", "amount": 1000.0}),
-#     ("$1,000.00", {"currency": "$", "amount": 1000.0}),
-#     ("$5,555,555", {"currency": "$", "amount": 5555555.0}),
-#     ("$5,555,555.55", {"currency": "$", "amount": 5555555.55}),
-#     ("$45,555,555.55", {"currency": "$", "amount": 45555555.55}),
-#     ("$456,555,555.55", {"currency": "$", "amount": 456555555.55}),
-#     ("$1234567.89", {"currency": "$", "amount": 1234567.89}),
-#     ("$12,34", None),
-#     ("$1234.9", None),
-#     ("$1234.999", None),
-#     ("$", None),
-#     ("31", None),
-#     ("$$31", None),
-# ])
-# def test_money(input, expected):
-#     """We are just concerned with dollars here for now but might take other
-#     currencies later."""
-#     assert s.money(input) == expected
-#
+
+
+@xfail
+@params("input,expected", [
+    ("$4", {"currency": "$", "amount": 4.0}),
+    ("$19", {"currency": "$", "amount": 19.0}),
+    ("$19.00", {"currency": "$", "amount": 19.0}),
+    ("$3.58", {"currency": "$", "amount": 3.58}),
+    ("$1000", {"currency": "$", "amount": 1000.0}),
+    ("$1000.00", {"currency": "$", "amount": 1000.0}),
+    ("$1,000", {"currency": "$", "amount": 1000.0}),
+    ("$1,000.00", {"currency": "$", "amount": 1000.0}),
+    ("$5,555,555", {"currency": "$", "amount": 5555555.0}),
+    ("$5,555,555.55", {"currency": "$", "amount": 5555555.55}),
+    ("$45,555,555.55", {"currency": "$", "amount": 45555555.55}),
+    ("$456,555,555.55", {"currency": "$", "amount": 456555555.55}),
+    ("$1234567.89", {"currency": "$", "amount": 1234567.89}),
+    ("$12,34", None),
+    ("$1234.9", None),
+    ("$1234.999", None),
+    ("$", None),
+    ("31", None),
+    ("$$31", None),
+])
+def test_money(input, expected):
+    """We are just concerned with dollars here for now but might take other
+    currencies later."""
+    assert s.money(input) == expected
+
 #
 # @xfail
 # @params("input,expected", [
