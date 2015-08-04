@@ -20,12 +20,14 @@ def binary_even(num):
     else:
         return False
 
+
 def hex(num):
     match = re.match(r'^[\dA-Fa-f]+$', num)
     if match:
         return True
     else:
         return False
+
 
 def word(word):
     match = re.findall(r'^[A-z0-9\-]+[A-z]+$', word)
@@ -34,6 +36,7 @@ def word(word):
         return True
     else:
         return False
+
 
 def words(words, count=0):
     """
@@ -67,11 +70,11 @@ def phone_number(phone_num):
     else:
         return False
 
+
 def money(mon):
     """We are just concerned with dollars here."""
     match = re.search(r'^\${1}\d+(?:\,\d{3})?(?:\,\d{3})?(?:\.\d{2})?$', mon)
 
-    print(match)
     if match:
         return True
     else:
@@ -81,20 +84,20 @@ def money(mon):
 def zipcode(zip):
     match = re.search(r'^\d{5}(?:\-\d{4})?$', zip)
 
-    print(match)
     if match:
         return True
     else:
         return False
+
 
 def date(date):
     match = re.search(r'^\d{1,4}[\-/]{1}\d{1,2}[\-/]{1}\d{2,4}$', date)
 
-    print(match)
     if match:
         return True
     else:
         return False
+
 
 # ## HARD MODE BEGINS
 
